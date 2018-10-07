@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 
 # The mask returned from InRange only has 2 values: 0 means not in range, 255 means in range
 # So count of 255 means the blue area (or any color) in the range
@@ -22,15 +22,17 @@ while(1):
     # Threshold the HSV image to get only blue colors
     mask = cv2.inRange(hsv, lower_blue, upper_blue)
     res = cv2.bitwise_and(frame,frame, mask= mask)
-     
+    
+    cv2.namedWindow('res', cv2.WINDOW_NORMAL)
     cv2.imshow('frame',frame)
     cv2.imshow('mask',mask)
     cv2.imshow('res',res)
     k = cv2.waitKey(5) & 0xFF
-    if k == 27:
+    # ESC or SPACE will exit
+    if k == 27 or k == 32:
         break
     
 
-
+cap.release()
 cv2.destroyAllWindows()
 

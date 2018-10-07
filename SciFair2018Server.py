@@ -13,6 +13,7 @@ detectors = {
     "circle":    "./lookingatshapes.py -i static/img/visible/01-visibleplastics.png",
     "rectangle": "./lookingatshapes.py -i static/img/visible/01-visibleplastics.png",
     "triangle":  "./lookingatshapes.py -i static/img/visible/01-visibleplastics.png",
+    "string":    "shape_string.py",
     "colormapping": "comparison850and950nma.py"
 }
 
