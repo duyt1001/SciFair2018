@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="static/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Anna's own CSS-->
+    <style>
+        .container {
+          height: 15vh;
+        }
+        .fixed-btn {
+          width: 10rem;
+          height: 2.3rem;
+        }
+    </style>
+
+    <title>Anna Controller</title>
+  </head>
+  <body>
+    <header class="">
+        <h1 class="text-center">
+            Anna's Smart ROV Detection System
+        </h1>
+    </header>
+    <hr>
+    <div class="IRBased container">
+      <form id="irform" action="/runbackend">
+          <div class="form-group">
+                <h2 class="text-primary">InfraRed Color Mapping System
+                </h2>
+          </div>
+          <div class="irinput d-flex">
+              <div class="input-group mb-3 pr-2">
+                <select class="custom-select" id="visible" form="irform" name="selectvisible">
+                    {% for img in imgs_visible %}
+                    <option value="{{ img }}">{{ img }}</option>
+                    {% endfor %}
+                </select>
+                <div class="input-group-append">
+                    <label for="visible" class="input-group-text ir-label btn">visible</label>
+                </div>
+              </div>
+              <div class="input-group mb-3 pr-2">
+                <select class="custom-select" id="850nm" form="irform" name="select850">
+                    {% for img in imgs_850 %}
+                    <option value="{{ img }}">{{ img }}</option>
+                    {% endfor %}
+                </select>
+                <div class="input-group-append">
+                    <label for="850nm" class="input-group-text ir-label btn">850nm</label>
+                </div>
+              </div>
+              <div class="input-group mb-3 pr-2">
+                <select class="custom-select" id="950nm" form="irform" name="select950">
+                    {% for img in imgs_950 %}
+                    <option value="{{ img }}">{{ img }}</option>
+                    {% endfor %}
+                </select>
+                <div class="input-group-append">
+                    <label for="950nm" class="input-group-text ir-label btn">950nm</label>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <input type="submit" id="ir-colormapping" name="ir-colormapping" value="Mapping" class="btn fixed-btn btn-info ir-colormapping">
+              </div>
+        </div>
+      </form>
+    </div>
+
+    <hr>
+
+    <div class="ColorBased container">
+        <form class="d-inline" action='/runbackend'>
+            <div class="input-group text-primary">
+                <h2>Color Detection</h2>
+            </div>
+            <div class="colorinput d-flex">
+            <div class="input-group">
+                <input type="submit" id="color-orange" name="color" value="orange" class="btn fixed-btn run-backend" style="background-color: orange">
+            </div>
+            <div class="input-group">
+                <input type="submit" id="color-green" name="color" value="green" class="btn fixed-btn btn-success run-backend">
+            </div>
+            <div class="input-group">
+                <input type="submit" id="color-blue" name="color" value="blue" class="btn fixed-btn btn-primary run-backend">
+            </div>
+            <div class="input-group">
+                <input type="submit" id="color-purple" name="color" value="purple" class="btn fixed-btn run-backend" style="background-color: purple">
+            </div>
+            </div>
+        </form>
+    </div>
+
+    <hr>
+
+    <div class="Morphology container">
+        <form  action='/runbackend'>
+            <div class="input-group">
+              <h2 class="text-primary">Morphology Detection</h2>
+            </div>
+            <div class="morphologyinput d-flex">
+            <div class="input-group">
+                <input type="submit" id="shape-circle" name="shape" value="circle" class="btn fixed-btn btn-info run-backend">
+            </div>
+            <div class="input-group">
+                <input type="submit" id="shape-rectangle" name="shape" value="rectangle" class="btn fixed-btn btn-info run-backend">
+            </div>
+            <div class="input-group">
+                <input type="submit" id="shape-triangle" name="shape" value="triangle" class="btn fixed-btn btn-info run-backend">
+            </div>
+            <div class="input-group">
+            </div>
+          </div>
+        </form>
+    </div>
+
+    <hr>
+
+    <div class="Fluorescent container">
+      <div class="d-flex">
+        <div class="input-group">
+          <h2 class="text-primary">Fluorescent</h2>
+        </div>
+        <div class="input-group">
+          <a href="load?imgfile=IMG_1768.jpg" class="btn fixed-btn btn-info fluorescent-btn">Load</a>
+        </div>
+        <div class="input-group">
+        </div>
+        <div class="input-group">
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="Fluorescent container">
+      <div class="d-flex">
+        <div class="input-group">
+          <h2 class="text-primary">UV</h2>
+        </div>
+        <div class="input-group">
+          <a href="load?imgfile=UV20181006.png" class="btn fixed-btn btn-info uv-btn">Load</a>
+        </div>
+        <div class="input-group">
+        </div>
+        <div class="input-group">
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="static/js/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="static/js/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="static/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="static/js/annadu.js" crossorigin="anonymous"></script>
+
+  </body>
+</html>
