@@ -10,28 +10,94 @@
 
     <!-- Anna's own CSS-->
     <style>
-        .container {
-          height: 15vh;
+        header {
+            text-align: center;
         }
         .fixed-btn {
           width: 10rem;
           height: 2.3rem;
+        }
+        #anna-content {
+            position: absolute;
+            left: 10rem;
+            top: 10rem;
+            overflow: hidden;
+        }
+        div.IRBased, div.ColorBased, div.Morphology {
+            height: 80vh;
+        }
+        #topnavbar {
+            top: 5rem;
+            left: 5rem;
+        }
+        #left-navbar {
+            top: 10rem;
+        }
+        .left-navlink {
+            background-color:#9370DB;
+            color: white;
         }
     </style>
 
     <title>Anna Controller</title>
   </head>
   <body>
-    <header class="">
+    <header class="sticky-top">
         <h1 class="text-center">
             Anna's Smart ROV Detection System
         </h1>
     </header>
-    <hr>
-    <div class="IRBased container">
+        <div class="nav nav-pills nav-fill position-static" id="topnavbar">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">InfreRed</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Color Detection</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Morphology</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Others</a>
+            </li>
+        </div>
+    <div class="" style="overflow:hidden">
+        <div class="container-fluit nav flex-column position-fixed float-left" id="left-navbar"  style="background-color: purple">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">InfraRed</a>
+              <div class="list-group left-subnav">
+                <a class="list-group-item left-navlink" href="#">Visible</a>
+                <a class="list-group-item left-navlink" href="#">850nm</a>
+                <a class="list-group-item left-navlink" href="#">950nm</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Color Detection</a>
+              <ul class="list-group left-subnav">
+                <a class="list-group-item left-navlink" href="#">Orange</a>
+                <a class="list-group-item left-navlink" href="#">Green</a>
+                <a class="list-group-item left-navlink" href="#">Blue</a>
+                <a class="list-group-item left-navlink" href="#">Purple</a>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Morphology</a>
+              <ul class="list-group left-subnav">
+                <a class="list-group-item left-navlink" href="#">Circle</a>
+                <a class="list-group-item left-navlink" href="#">Square</a>
+                <a class="list-group-item left-navlink" href="#">Rectangle</a>
+                <a class="list-group-item left-navlink" href="#">Thread</a>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Others</a>
+            </li>
+        </div>
+    <div class="container float-left" id="anna-content">
+    <div class="IRBased container" id="IRBased">
       <form id="irform" action="/runbackend">
           <div class="form-group">
-                <h2 class="text-primary">InfraRed Color Mapping System
+                <h2 class="text-primary text-center">InfraRed Color Mapping System
                 </h2>
           </div>
           <div class="irinput d-flex">
@@ -74,7 +140,7 @@
 
     <hr>
 
-    <div class="ColorBased container">
+    <div class="ColorBased container" id="ColorBased">
         <form class="d-inline" action='/runbackend'>
             <div class="input-group text-primary">
                 <h2>Color Detection</h2>
@@ -136,8 +202,6 @@
         </div>
       </div>
       <hr>
-    </div>
-    <div class="Fluorescent container">
       <div class="d-flex">
         <div class="input-group">
           <h2 class="text-primary">UV</h2>
@@ -151,6 +215,8 @@
         </div>
       </div>
     </div>
+    </div>
+</div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
