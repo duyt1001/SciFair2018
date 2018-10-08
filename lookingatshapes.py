@@ -8,11 +8,16 @@ Created on Sat Sep  1 15:28:45 2018
 
 import numpy as np
 import cv2
-import argparse
+import argparse, sys
 
 # Using Argument Parser to get the location of image
 ap = argparse.ArgumentParser()
 ap.add_argument('-i', '--image', required=True, help='Path to image')
+ap.add_argument('--sigma', type=float, default=0.33, help='Sigma of edge detection')
+ap.add_argument('--count', type=int, default=50, help='Count of tagged objects')
+ap.add_argument('--low', type=int, help='Low of Canny detection')
+ap.add_argument('--high', type=int, help='High of Canny detection')
+ap.add_argument('--no-tagging', action='store_true', help='Draw the contour without tagging')
 args = ap.parse_args()
 
 # load the image on disk and then display it
@@ -24,10 +29,14 @@ grayScale = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 # Find edges in the image using canny edge detection method
 # Calculate lower threshold and upper threshold using sigma = 0.33
-sigma = 0.33
+sigma = args.sigma
 v = np.median(grayScale)
 low = int(max(0, (1.0 - sigma) * v))
 high = int(min(255, (1.0 + sigma) * v))
+if args.low:
+    low = args.low
+if args.high:
+    high = args.high
 
 edged = cv2.Canny(grayScale, low, high)
 
@@ -71,13 +80,19 @@ def detectShape(cnt):
     # return the name of the shape
     return shape
 
+# Sort the contours by their area
+areas = [ cv2.contourArea(c) for c in cnts]
+#sorted_cnts = [x for _,x in sorted(zip(areas, cnts), reverse=True)]
+inds = list(range(len(cnts)))
+sorted_inds = [x for _,x in sorted(zip(areas, inds), reverse=True)]
+sorted_cnts = [ cnts[i] for i in sorted_inds]
 
 # Now we will loop over every contour
 # call detectShape() for it and
 # write the name of shape in the center of image
 
 # loop over the contours
-for c in cnts:
+for c in sorted_cnts[:args.count]:
     # compute the moment of contour
     M = cv2.moments(c)
     if M['m00'] == 0 :
@@ -94,8 +109,9 @@ for c in cnts:
     cv2.drawContours(image, [c], -1, (0, 255, 0), 2)
 
     # Write the name of shape on the center of shapes
-    cv2.putText(image, shape, (cX, cY), cv2.FONT_HERSHEY_SIMPLEX,
-                0.5, (255, 255, 255), 2)
+    if not args.no_tagging:
+        cv2.putText(image, shape, (cX, cY), cv2.FONT_HERSHEY_SIMPLEX,
+            0.5, (255, 255, 255), 2)
 
     # show the output image
     cv2.imshow("Image", image)

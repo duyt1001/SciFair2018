@@ -18,10 +18,10 @@
           height: 2.3rem;
         }
         #anna-content {
-            position: absolute;
+            position: relative;
             left: 10rem;
-            top: 10rem;
-            overflow: hidden;
+            top: 5vh;
+            overflow: scroll;
         }
         div.IRBased, div.ColorBased, div.Morphology {
             height: 80vh;
@@ -31,11 +31,13 @@
             left: 5rem;
         }
         #left-navbar {
-            top: 10rem;
+            top: 8rem;
+            background-color: #17a2b8;
+            color: red;
         }
         .left-navlink {
-            background-color:#9370DB;
-            color: white;
+            background-color: rgb(77, 216, 216);
+            color: red;
         }
     </style>
 
@@ -47,7 +49,7 @@
             Anna's Smart ROV Detection System
         </h1>
     </header>
-        <div class="nav nav-pills nav-fill position-static" id="topnavbar">
+        <div class="nav nav-tabs nav-fill sticky-top" id="topnavbar">
             <li class="nav-item">
                 <a class="nav-link active" href="#">InfreRed</a>
             </li>
@@ -62,9 +64,9 @@
             </li>
         </div>
     <div class="" style="overflow:hidden">
-        <div class="container-fluit nav flex-column position-fixed float-left" id="left-navbar"  style="background-color: purple">
+        <div class="container-fluit nav flex-column position-fixed float-left" id="left-navbar">
             <li class="nav-item">
-              <a class="nav-link active" href="#">InfraRed</a>
+              <a class="nav-link active text-danger" href="#">InfraRed</a>
               <div class="list-group left-subnav">
                 <a class="list-group-item left-navlink" href="#">Visible</a>
                 <a class="list-group-item left-navlink" href="#">850nm</a>
@@ -72,7 +74,7 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Color Detection</a>
+              <a class="nav-link text-danger active" href="#">Color Detection</a>
               <ul class="list-group left-subnav">
                 <a class="list-group-item left-navlink" href="#">Orange</a>
                 <a class="list-group-item left-navlink" href="#">Green</a>
@@ -81,7 +83,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Morphology</a>
+              <a class="nav-link text-danger" href="#">Morphology</a>
               <ul class="list-group left-subnav">
                 <a class="list-group-item left-navlink" href="#">Circle</a>
                 <a class="list-group-item left-navlink" href="#">Square</a>
@@ -142,8 +144,8 @@
 
     <div class="ColorBased container" id="ColorBased">
         <form class="d-inline" action='/runbackend'>
-            <div class="input-group text-primary">
-                <h2>Color Detection</h2>
+            <div class="form-group text-primary">
+                <h2 class="text-center">Color Detection</h2>
             </div>
             <div class="colorinput d-flex">
             <div class="input-group">
@@ -166,8 +168,8 @@
 
     <div class="Morphology container">
         <form  action='/runbackend'>
-            <div class="input-group">
-              <h2 class="text-primary">Morphology Detection</h2>
+            <div class="form-group">
+              <h2 class="text-primary text-center">Morphology Detection</h2>
             </div>
             <div class="morphologyinput d-flex">
             <div class="input-group">
