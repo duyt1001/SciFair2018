@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import os, os.path, sys
 from subprocess import run
+import time
 
 app = Flask(__name__)
 
@@ -38,6 +39,9 @@ def loadpicture():
     app.logger.debug('requesting: ' + img)
     if not os.path.isfile(img):
         img = 'static/img/404.jpg'
+    else:
+        # Add random number to force reloading image
+        img = img + '?' + str(int(time.time()))
     return render_template('loadpicture.html', img=img)
 
 @app.route('/runbackend')
@@ -62,7 +66,7 @@ def runbackend():
         image950 = "static/img/950nm/" +request.args.get('select950', '')
         app.logger.debug ("python3 "+ detectors["colormapping"] + " -i " + image850 + " -j " + image950)
         run("python3 "+ detectors["colormapping"] + " -i " + image850 + " -j " + image950, shell=True)
-        return render_template('loadpicture.html', img='static/img/compare-850-950.png')
+        return render_template('loadpicture.html', img='static/img/compare-850-950.png'+ '?' + str(int(time.time())))
     else:
         app.logger.debug ("Neither color or shape")
     return index()

@@ -8,13 +8,15 @@ Created on Sat Aug 11 20:12:04 2018
 
 import cv2
 import numpy as np
-import argparse
+import argparse, sys
 
 # Using Argument Parser to get the location of image
 ap = argparse.ArgumentParser()
 ap.add_argument('-i', '--image850', required=True, help='Path to 850')
 ap.add_argument('-j', '--image950', required=True, help='Path to 950')
 args = ap.parse_args()
+
+print(args.image850, args.image950, file=sys.stderr)
 
 #myimg = cv2.imread('/Users/anna/SciFair2018/xit4850.png')
 myimg = cv2.imread(args.image850)
