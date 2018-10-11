@@ -1,3 +1,7 @@
+$(".nav .nav-link").on("click", function(){
+    $(".nav").find(".active").removeClass("active");
+    $(this).addClass("active");
+ });
 $(function() {
     $('.ir-colormapping').click(function(){
         $.ajax({

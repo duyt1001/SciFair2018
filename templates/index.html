@@ -33,6 +33,9 @@
             left: 10rem;
             overflow: scroll;
         }
+        div.filler {
+            height: 15vh;
+        }
         div.IRBased, div.ColorBased, div.Morphology {
             height: 85vh;
         }
@@ -40,7 +43,7 @@
             height: 65vh;
         }
         #left-navbar {
-            top: 8rem;
+            top: 7rem;
             background-color: #17a2b8;
             color: purple;
         }
@@ -63,16 +66,16 @@
         </h1>
         <div class="nav nav-tabs nav-fill sticky-top" id="topnavbar">
             <li class="nav-item">
-                <a class="nav-link topnavbar-link active" href="#">Infrared</a>
+                <a class="nav-link topnavbar-link active" href="#ir-filler">Infrared</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link topnavbar-link" href="#">Color Detection</a>
+                <a class="nav-link topnavbar-link" href="#color-filler">Color Detection</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link topnavbar-link" href="#">Morphology</a>
+                <a class="nav-link topnavbar-link" href="#morphology-filler">Morphology</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link topnavbar-link" href="#">Others</a>
+                <a class="nav-link topnavbar-link" href="#others-filler">Others</a>
             </li>
         </div>
     </header>
@@ -109,6 +112,7 @@
             </li>
         </div>
     <div class="container float-left" id="anna-content">
+        <div class="filler" id="ir-filler"></div>
     <div class="IRBased container" id="IRBased">
                 <h2 class="text-primary text-center">Infrared Color Mapping System
                 </h2>
@@ -154,6 +158,7 @@
       </div>
     </div>
 
+    <div class="filler" id="color-filler"></div>
     <div class="ColorBased container" id="ColorBased">
         <form class="d-inline" action='/runbackend'>
             <div class="form-group text-primary">
@@ -176,9 +181,8 @@
         </form>
     </div>
 
-    <hr>
-
-    <div class="Morphology container">
+    <div class="filler" id="morphology-filler"></div>
+    <div class="Morphology container" id="MorphologyBased">
         <form  action='/runbackend'>
             <div class="form-group">
               <h2 class="text-primary text-center">Morphology Detection</h2>
@@ -200,9 +204,8 @@
         </form>
     </div>
 
-    <hr>
-
-    <div class="Fluorescent container">
+    <div class="filler" id="others-filler"></div>
+    <div class="Fluorescent container" id="OthersBased">
       <div class="d-flex">
         <div class="input-group">
           <h2 class="text-primary">Fluorescent</h2>
