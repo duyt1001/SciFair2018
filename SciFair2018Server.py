@@ -15,6 +15,8 @@ detectors = {
     "rectangle": "lookingatshapes.py",
     "triangle":  "lookingatshapes.py",
     "square":    "lookingatshapes.py",
+    "pentagon":    "lookingatshapes.py",
+    "all":       "lookingatshapes.py",
     "colormapping": "comparison850and950nma.py"
 }
 
