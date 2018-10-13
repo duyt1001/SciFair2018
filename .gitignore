@@ -3,4 +3,6 @@ __pycache__/
 *.png
 *.skp
 *.docx
+*.pptx
+*.xlsx
 .DS_Store

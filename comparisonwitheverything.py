@@ -9,25 +9,29 @@ Created on Sat Aug 11 20:12:04 2018
 import cv2
 import numpy as np
 
-myimg = cv2.imread('/Users/anna/SciFair2018/Metal2850.jpg')
+img_visible = '/Users/anna/SciFair2018/P2visible.jpg'
+img_850 = '/Users/anna/SciFair2018/P2850.jpg'
+img_output = '/Users/anna/SciFair2018/P2visible850.jpg'
+
+myimg = cv2.imread(img_visible)
 avg_color_per_row = np.average(myimg, axis=0)
 avg_color = np.average(avg_color_per_row, axis=0)
 avgimghist = int(avg_color[0])
 
-meimg = cv2.imread('/Users/anna/SciFair2018/Metal2950.jpg')
+meimg = cv2.imread(img_850)
 avg_color_per_row = np.average(meimg, axis=0)
 avg_color = np.average(avg_color_per_row, axis=0)
 avgimghisto = int(avg_color[0])
 
 
-myimg = cv2.imread('/Users/anna/SciFair2018/Metal2850.jpg',0)
+myimg = cv2.imread(img_visible,0)
 rows,cols = myimg.shape
 
 
-meimg = cv2.imread('/Users/anna/SciFair2018/Metal2950.jpg',0)
+meimg = cv2.imread(img_850,0)
 rows,cols = meimg.shape
 
-thisimg = cv2.imread('/Users/anna/SciFair2018/Metal2850.jpg')
+thisimg = cv2.imread(img_visible)
 
 
 
@@ -50,7 +54,7 @@ for i in range(rows):
         if pixelvalue >= 140:
             thisimg.itemset((i,j,2),pixelvalue)
       
-cv2.imwrite('/Users/anna/SciFair2018/Metal2850950.jpg',thisimg)
+cv2.imwrite(img_output,thisimg)
     
 print("done")    
 
