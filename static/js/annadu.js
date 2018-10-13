@@ -1,7 +1,13 @@
+function switchActive(navlinkToActive) {
+    $(".nav").find(".active").removeClass("active");
+    navlinkToActive.addClass("active");
+}
+
 // Top navbar links switch active
 $(".topnavbar .nav-link").on("click", function(){
-    $(".nav").find(".active").removeClass("active");
-    $(this).addClass("active");
+//    $(".nav").find(".active").removeClass("active");
+//    $(this).addClass("active");
+    switchActive($(this));
  });
 $(function() {
     // color mapping code here is NOT used!
@@ -14,6 +20,7 @@ $(function() {
         $.get('/runbackend', data, function(result) {
             var seconds = Math.round(new Date() / 1000); // force reloading by random string
             $('#ir-image').attr('src', 'static/img/compare-850-950.png?' + seconds);
+            switchActive($('#topnavbar-ir'));
             location.href = '#IRBased';
         });
     });
@@ -25,11 +32,13 @@ $(function() {
         //window.location.href = url;
         imgsrc = "static/img/"+labelfor+'/'+imgfile;
         $('#ir-image').attr('src', imgsrc);
+        switchActive($('#topnavbar-ir'));
         location.href = '#IRBased';
     });
     // color based buttons will run backend program with color param
     $('.color-based').click(function(){
         $.get('/runbackend', {color: $(this).text().toLowerCase()}, function(result) {
+            switchActive($('#topnavbar-color'));
             location.href = '/#ColorBased';
         });
     });
@@ -40,15 +49,20 @@ $(function() {
             imgfile: $('#selectshape option:selected').text()
         };
         $.get('/runbackend', data, function(result) {
+            switchActive($('#topnavbar-morphology'));
             location.href = '/#MorphologyBased';
         });
     });
     // fluorescent button loads the only image file
     $('.fluorescent-btn').click(function(){
         $('#others-image').attr('src', 'static/img/IMG_1768.jpg');
+        switchActive($('#topnavbar-others'));
+        location.href = '/#OthersBased';
     });
     // uv button loads the only image file
     $('.uv-btn').click(function(){
         $('#others-image').attr('src', 'static/img/UV20181006.png');
+        switchActive($('#topnavbar-others'));
+        location.href = '/#OthersBased';
     });
   });
