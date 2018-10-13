@@ -7,10 +7,10 @@ app = Flask(__name__)
 
 
 detectors = {
-    "orange":    "annaorangedetectorFIXED.py",
-    "blue":      "annabluedetectorFIXED2.py",
-    "green":     "annagreenballdetector.py",
-    "purple":    "annapurpledetectorFIXED.py",
+    "orange":    "anna_color_detector.py",
+    "blue":      "anna_color_detector.py",
+    "green":     "anna_color_detector.py",
+    "purple":    "anna_color_detector.py",
     "circle":    "./lookingatshapes.py -i static/img/visible/01-visibleplastics.png",
     "rectangle": "./lookingatshapes.py -i static/img/visible/01-visibleplastics.png",
     "triangle":  "./lookingatshapes.py -i static/img/visible/01-visibleplastics.png",
@@ -51,8 +51,8 @@ def runbackend():
     colormapping = request.args.get('ir-colormapping', '')
     if color:
         if detectors[color]:
-            app.logger.debug("python3 " + detectors[color])
-            run("python3 " + detectors[color], shell=True)
+            app.logger.debug("python3 " + detectors[color] + " --color " + color)
+            run(["python3", detectors[color], "--color", color])
         else:
             pass
     elif shape:
