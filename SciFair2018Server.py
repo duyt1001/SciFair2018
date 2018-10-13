@@ -5,7 +5,7 @@ import time
 
 app = Flask(__name__)
 
-
+# detectors map the type to the backend program
 detectors = {
     "orange":    "anna_color_detector.py",
     "blue":      "anna_color_detector.py",
@@ -18,6 +18,7 @@ detectors = {
     "colormapping": "comparison850and950nma.py"
 }
 
+# Default http path will load index.html template
 @app.route('/')
 @app.route('/index.html')
 def index():
@@ -28,6 +29,7 @@ def index():
     app.logger.debug("imgs_visible: %s", imgs_visible)
     return render_template('index.html', **locals())
 
+# load picture, could be more useful, now seems only 404
 @app.route('/load')
 @app.route('/loadpicture.html')
 def loadpicture():
@@ -45,11 +47,12 @@ def loadpicture():
         img = img + '?' + str(int(time.time()))
     return render_template('loadpicture.html', img=img)
 
+# color, morphology, color-mapping, both use this to run backend program
 @app.route('/runbackend')
 def runbackend():
     color = request.args.get('color', '')
     shape = request.args.get('shape', '')
-    colormapping = request.args.get('ir-colormapping', '')
+    colormapping = request.args.get('ircolormapping', '')
     if color:
         if detectors[color]:
             app.logger.debug("python3 " + detectors[color] + " --color " + color)
@@ -68,14 +71,16 @@ def runbackend():
         image950 = "static/img/950nm/" +request.args.get('select950', '')
         app.logger.debug ("python3 "+ detectors["colormapping"] + " -i " + image850 + " -j " + image950)
         run("python3 "+ detectors["colormapping"] + " -i " + image850 + " -j " + image950, shell=True)
-        return render_template('loadpicture.html', img='static/img/compare-850-950.png'+ '?' + str(int(time.time())))
+        #return render_template('loadpicture.html', img='static/img/compare-850-950.png'+ '?' + str(int(time.time())))
     else:
-        app.logger.debug ("Neither color or shape")
+        app.logger.debug ("Neither color nor shape")
     return index()
 
+# Error handling, the happy and cute 404 page
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('loadpicture.html', img='static/img/404.jpg'), 404
 
+# http://localhost:5000 or http://127.0.0.1:5000 are entry urls to start
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=True)

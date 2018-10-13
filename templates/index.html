@@ -61,6 +61,7 @@
     <title>Anna Controller</title>
   </head>
   <body>
+    <!-- header and top navbar are sticky on top, with background image-->
     <header class="sticky-top">
         <h1 class="text-center header-title">
             Anna's Smart ROV Detection System
@@ -80,6 +81,8 @@
             </li>
         </div>
     </header>
+
+    <!-- Left navbar is fixed to the left, with small size to fit in one page -->
     <div class="" style="overflow:hidden">
         <div class="container-fluit nav flex-column position-fixed float-left" id="left-navbar">
             <li class="nav-item">
@@ -88,6 +91,7 @@
                 <label for='visible' class="list-group-item left-navlink py-0 ir-label">Visible</label>
                 <label for='850nm' class="list-group-item left-navlink py-0 ir-label">850nm</label>
                 <label for='950nm' class="list-group-item left-navlink py-0 ir-label">950nm</label>
+                <label class="list-group-item left-navlink py-0 ircolormapping">Mapping</label>
               </div>
             </li>
             <li class="nav-item">
@@ -115,12 +119,14 @@
               </ul>
             </li>
         </div>
+
     <div class="container float-left" id="anna-content">
-    <div class="IRBased container" id="IRBased">
-        <div class="filler" id="ir-filler"></div>
+      <!-- Infrared based detection -->
+      <div class="IRBased container" id="IRBased">
+          <div class="filler" id="ir-filler"></div>
           <h2 class="text-primary text-center">Infrared Color Mapping System
           </h2>
-          <form id="irform" action="/runbackend">
+          <div id="irform" action="/runbackend">
             <div class="irinput d-flex">
               <div class="input-group mb-3 pr-2">
                 <select class="custom-select" id="visible" form="irform" name="selectvisible">
@@ -153,15 +159,16 @@
                 </div>
               </div>
               <div class="input-group mb-3">
-                <input type="submit" id="ir-colormapping" name="ir-colormapping" value="Mapping" class="btn fixed-btn btn-info ir-colormapping">
+                <input type="submit" id="ircolormapping" name="ircolormapping" value="Mapping" class="btn fixed-btn btn-info ircolormapping">
               </div>
-        </div>
-      </form>
-      <div id="IR-Result">
-          <img class="ir-image" id="ir-image" src="">
+            </div>
+          </div>
+          <div id="IR-Result">
+            <img class="ir-image" id="ir-image" src="">
+          </div>
       </div>
-    </div>
 
+    <!-- Color based detection-->
     <div class="ColorBased container" id="ColorBased">
         <div class="filler" id="color-filler"></div>
         <div class="d-inline" action='/runbackend'>
@@ -185,6 +192,7 @@
         </div>
     </div>
 
+    <!-- Morphology based detection -->
     <div class="Morphology container" id="MorphologyBased">
         <div class="filler" id="morphology-filler"></div>
         <div class="form-group">
@@ -210,6 +218,7 @@
             </div>
     </div>
 
+    <!-- Fluorescent and UV -->
     <div class="Fluorescent container" id="OthersBased">
         <div class="filler" id="others-filler"></div>
         <h2 class="text-center text-primary">Other methods</h2>
@@ -234,9 +243,9 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="static/js/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="static/js/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="static/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="static/js/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="static/js/popper.min.js" crossorigin="anonymous"></script>
+    <script src="static/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <script src="static/js/annadu.js" crossorigin="anonymous"></script>
 
   </body>
