@@ -13,6 +13,7 @@ import argparse, sys
 # Using Argument Parser to get the location of image
 ap = argparse.ArgumentParser()
 ap.add_argument('-i', '--image', required=True, help='Path to image')
+ap.add_argument('--shape', default='all', help='Shapes to be tagged')
 ap.add_argument('--sigma', type=float, default=0.33, help='Sigma of edge detection')
 ap.add_argument('--count', type=int, default=50, help='Count of tagged objects')
 ap.add_argument('--low', type=int, help='Low of Canny detection')
@@ -110,8 +111,9 @@ for c in sorted_cnts[:args.count]:
 
     # Write the name of shape on the center of shapes
     if not args.no_tagging:
-        cv2.putText(image, shape, (cX, cY), cv2.FONT_HERSHEY_SIMPLEX,
-            0.5, (255, 255, 255), 2)
+        if args.shape == 'all' or args.shape == shape:
+            cv2.putText(image, shape, (cX, cY), cv2.FONT_HERSHEY_SIMPLEX,
+                0.5, (255, 255, 255), 2)
 
     # show the output image
     cv2.imshow("Image", image)

@@ -62,8 +62,8 @@ def runbackend():
     elif shape:
         if detectors[shape]:
             imgshape = "static/img/shape/" + request.args.get('imgfile', '')
-            app.logger.debug("python3 " + detectors[shape] + imgshape)
-            run(["python3", detectors[shape], "-i", imgshape])
+            app.logger.debug("python3 " + detectors[shape] + imgshape + shape)
+            run(["python3", detectors[shape], "-i", imgshape, "--shape", shape])
         else:
             pass
     elif colormapping:
