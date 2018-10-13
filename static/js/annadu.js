@@ -28,8 +28,17 @@ $(function() {
         location.href = '#IRBased';
     });
     $('.color-based').click(function(){
-        $.get('/runbackend', {color: $(this).text().toLowerCase()}, function(data) {
+        $.get('/runbackend', {color: $(this).text().toLowerCase()}, function(result) {
             location.href = '/#ColorBased';
+        });
+    });
+    $('.morphology-btn').click(function(){
+        data = {
+            shape: $(this).text().toLowerCase(),
+            imgfile: $('#selectshape option:selected').text()
+        };
+        $.get('/runbackend', data, function(result) {
+            location.href = '/#MorphologyBased';
         });
     });
     $('.fluorescent-btn').click(function(){

@@ -11,10 +11,10 @@ detectors = {
     "blue":      "anna_color_detector.py",
     "green":     "anna_color_detector.py",
     "purple":    "anna_color_detector.py",
-    "circle":    "./lookingatshapes.py -i static/img/visible/01-visibleplastics.png",
-    "rectangle": "./lookingatshapes.py -i static/img/visible/01-visibleplastics.png",
-    "triangle":  "./lookingatshapes.py -i static/img/visible/01-visibleplastics.png",
-    "string":    "shape_string.py",
+    "circle":    "lookingatshapes.py",
+    "rectangle": "lookingatshapes.py",
+    "triangle":  "lookingatshapes.py",
+    "square":    "lookingatshapes.py",
     "colormapping": "comparison850and950nma.py"
 }
 
@@ -24,6 +24,7 @@ def index():
     imgs_850 = sorted(os.listdir("static/img/850nm/"))
     imgs_950 = sorted(os.listdir("static/img/950nm/"))
     imgs_visible = sorted(os.listdir("static/img/visible/"))
+    imgs_shape = sorted(os.listdir("static/img/shape/"))
     app.logger.debug("imgs_visible: %s", imgs_visible)
     return render_template('index.html', **locals())
 
@@ -57,8 +58,9 @@ def runbackend():
             pass
     elif shape:
         if detectors[shape]:
-            app.logger.debug("python3 " + detectors[shape])
-            run("python3 " + detectors[shape], shell=True)
+            imgshape = "static/img/shape/" + request.args.get('imgfile', '')
+            app.logger.debug("python3 " + detectors[shape] + imgshape)
+            run(["python3", detectors[shape], "-i", imgshape])
         else:
             pass
     elif colormapping:

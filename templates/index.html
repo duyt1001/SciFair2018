@@ -27,6 +27,7 @@
         .fixed-btn {
           width: 10rem;
           height: 2.3rem;
+          color: white!important;
         }
         #anna-content {
             position: relative;
@@ -101,10 +102,9 @@
             <li class="nav-item">
               <a class="nav-link left-navlink-main py-0" href="#MorphologyBased">Morphology</a>
               <ul class="list-group left-subnav">
-                <a class="list-group-item left-navlink py-0" href="#MorphologyBased">Circle</a>
-                <a class="list-group-item left-navlink py-0" href="#MorphologyBased">Square</a>
-                <a class="list-group-item left-navlink py-0" href="#MorphologyBased">Rectangle</a>
-                <a class="list-group-item left-navlink py-0" href="#MorphologyBased">Thread</a>
+                <a class="list-group-item left-navlink py-0 morphology-btn" href="#MorphologyBased">Circle</a>
+                <a class="list-group-item left-navlink py-0 morphology-btn" href="#MorphologyBased">Square</a>
+                <a class="list-group-item left-navlink py-0 morphology-btn" href="#MorphologyBased">Rectangle</a>
               </ul>
             </li>
             <li class="nav-item">
@@ -170,16 +170,16 @@
             </div>
             <div class="colorinput d-flex">
             <div class="input-group">
-                <a id="color-orange" name="color" value="orange" class="btn fixed-btn run-backend color-based text-white" style="background-color: orange">orange</a>
+                <a id="color-orange" name="color" value="orange" class="btn fixed-btn run-backend color-based" style="background-color: orange">orange</a>
             </div>
             <div class="input-group">
-                <a id="color-green" name="color" value="green" class="btn fixed-btn btn-success run-backend color-based text-white">green</a>
+                <a id="color-green" name="color" value="green" class="btn fixed-btn btn-success run-backend color-based">green</a>
             </div>
             <div class="input-group">
-                <a id="color-blue" name="color" value="blue" class="btn fixed-btn btn-primary run-backend color-based text-white">blue</a>
+                <a id="color-blue" name="color" value="blue" class="btn fixed-btn btn-primary run-backend color-based">blue</a>
             </div>
             <div class="input-group">
-                <a id="color-purple" name="color" value="purple" class="btn fixed-btn run-backend color-based text-white" style="background-color: purple">purple</a>
+                <a id="color-purple" name="color" value="purple" class="btn fixed-btn run-backend color-based" style="background-color: purple">purple</a>
             </div>
             </div>
         </div>
@@ -187,25 +187,27 @@
 
     <div class="Morphology container" id="MorphologyBased">
         <div class="filler" id="morphology-filler"></div>
-        <form  action='/runbackend'>
-            <div class="form-group">
-              <h2 class="text-primary text-center">Morphology Detection</h2>
-            </div>
-            <div class="morphologyinput d-flex">
-            <div class="input-group">
-                <input type="submit" id="shape-circle" name="shape" value="circle" class="btn fixed-btn btn-info run-backend">
-            </div>
-            <div class="input-group">
-                <input type="submit" id="shape-rectangle" name="shape" value="rectangle" class="btn fixed-btn btn-info run-backend">
-            </div>
-            <div class="input-group">
-                <input type="submit" id="shape-triangle" name="shape" value="triangle" class="btn fixed-btn btn-info run-backend">
+        <div class="form-group">
+            <h2 class="text-primary text-center">Morphology Detection</h2>
+        </div>
+        <div class="morphologyinput d-flex">
+            <div class="input-group pr-2">
+                <select class="custom-select selectshape" id="selectshape" name="selectshape">
+                    {% for img in imgs_shape %}
+                    <option value="{{ img }}">{{ img }}</option>
+                    {% endfor %}
+                </select>
             </div>
             <div class="input-group">
-                <input type="submit" id="shape-string" name="shape" value="string" class="btn fixed-btn btn-info run-backend">
+                <a id="shape-circle" name="shape" value="circle" class="btn fixed-btn btn-info run-backend morphology-btn">circle</a>
             </div>
-          </div>
-        </form>
+            <div class="input-group">
+                <a id="shape-triangle" name="shape" value="square" class="btn fixed-btn btn-info run-backend morphology-btn">square</a>
+            </div>
+            <div class="input-group">
+                    <a id="shape-rectangle" name="shape" value="rectangle" class="btn fixed-btn btn-info run-backend morphology-btn">rectangle</a>
+                </div>
+            </div>
     </div>
 
     <div class="Fluorescent container" id="OthersBased">
