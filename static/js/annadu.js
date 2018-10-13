@@ -1,4 +1,4 @@
-$(".nav .nav-link").on("click", function(){
+$(".topnavbar .nav-link").on("click", function(){
     $(".nav").find(".active").removeClass("active");
     $(this).addClass("active");
  });
@@ -21,15 +21,21 @@ $(function() {
     $('.ir-label').click(function(){
         labelfor = $(this).attr('for');
         imgfile = $('#'+labelfor+' option:selected').text()
-        url="/load?reqtype="+labelfor+"&imgfile="+imgfile
-        window.location.href = url;
+        //url="/load?reqtype="+labelfor+"&imgfile="+imgfile
+        //window.location.href = url;
+        imgsrc = "static/img/"+labelfor+'/'+imgfile;
+        $('#ir-image').attr('src', imgsrc);
+        location.href = '#IRBased';
+    });
+    $('.color-based').click(function(){
+        $.get('/runbackend', {color: $(this).text().toLowerCase()}, function(data) {
+            location.href = '/#ColorBased';
+        });
     });
     $('.fluorescent-btn').click(function(){
-        url="/load?reqtype="+"&imgfile="
-        window.location.href = url;
+        $('#others-image').attr('src', 'static/img/IMG_1768.jpg');
     });
     $('.uv-btn').click(function(){
-        url="/load?reqtype="+"&imgfile="
-        window.location.href = url;
+        $('#others-image').attr('src', 'static/img/UV20181006.png');
     });
   });

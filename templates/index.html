@@ -13,7 +13,7 @@
         header {
             text-align: center;
             z-index: 999;
-            background-image: url(static/img/anna+board+title2.jpg)
+            background-image: url(static/img/rsz_anna-board-title2.jpg)
         }
         .header-title {
             color: purple;
@@ -34,12 +34,12 @@
             overflow: scroll;
         }
         div.filler {
-            height: 15vh;
+            height: 16vh;
         }
         div.IRBased, div.ColorBased, div.Morphology, div.Fluorescent {
-            height: 85vh;
+            height: 100vh;
         }
-        img.ir-image {
+        img.ir-image, img.others-image {
             height: 65vh;
         }
         #left-navbar {
@@ -64,58 +64,62 @@
         <h1 class="text-center header-title">
             Anna's Smart ROV Detection System
         </h1>
-        <div class="nav nav-tabs nav-fill sticky-top" id="topnavbar">
+        <div class="nav nav-tabs nav-fill sticky-top topnavbar" id="topnavbar">
             <li class="nav-item">
-                <a class="nav-link topnavbar-link active" href="#ir-filler">Infrared</a>
+                <a class="nav-link topnavbar-link active" href="#IRBased">Infrared</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link topnavbar-link" href="#color-filler">Color Detection</a>
+                <a class="nav-link topnavbar-link" href="#ColorBased">Color Detection</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link topnavbar-link" href="#morphology-filler">Morphology</a>
+                <a class="nav-link topnavbar-link" href="#MorphologyBased">Morphology</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link topnavbar-link" href="#others-filler">Others</a>
+                <a class="nav-link topnavbar-link" href="#OthersBased">Others</a>
             </li>
         </div>
     </header>
     <div class="" style="overflow:hidden">
         <div class="container-fluit nav flex-column position-fixed float-left" id="left-navbar">
             <li class="nav-item">
-              <a class="nav-link active left-navlink-main py-0" href="#">Infrared</a>
+              <a class="nav-link active left-navlink-main py-0" href="#IRBased">Infrared</a>
               <div class="list-group left-subnav">
-                <a class="list-group-item left-navlink py-0" href="#">Visible</a>
-                <a class="list-group-item left-navlink py-0" href="#">850nm</a>
-                <a class="list-group-item left-navlink py-0" href="#">950nm</a>
+                <label for='visible' class="list-group-item left-navlink py-0 ir-label">Visible</label>
+                <label for='850nm' class="list-group-item left-navlink py-0 ir-label">850nm</label>
+                <label for='950nm' class="list-group-item left-navlink py-0 ir-label">950nm</label>
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link left-navlink-main py-0" href="#">Color Detection</a>
+              <a class="nav-link left-navlink-main py-0" href="#ColorBased">Color Detection</a>
               <ul class="list-group left-subnav">
-                <a class="list-group-item left-navlink py-0" href="#">Orange</a>
-                <a class="list-group-item left-navlink py-0" href="#">Green</a>
-                <a class="list-group-item left-navlink py-0" href="#">Blue</a>
-                <a class="list-group-item left-navlink py-0" href="#">Purple</a>
+                <a class="list-group-item left-navlink py-0 color-based" href="#ColorBased">Orange</a>
+                <a class="list-group-item left-navlink py-0 color-based" href="#ColorBased">Green</a>
+                <a class="list-group-item left-navlink py-0 color-based" href="#ColorBased">Blue</a>
+                <a class="list-group-item left-navlink py-0 color-based" href="#ColorBased">Purple</a>
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link left-navlink-main py-0" href="#">Morphology</a>
+              <a class="nav-link left-navlink-main py-0" href="#MorphologyBased">Morphology</a>
               <ul class="list-group left-subnav">
-                <a class="list-group-item left-navlink py-0" href="#">Circle</a>
-                <a class="list-group-item left-navlink py-0" href="#">Square</a>
-                <a class="list-group-item left-navlink py-0" href="#">Rectangle</a>
-                <a class="list-group-item left-navlink py-0" href="#">Thread</a>
+                <a class="list-group-item left-navlink py-0" href="#MorphologyBased">Circle</a>
+                <a class="list-group-item left-navlink py-0" href="#MorphologyBased">Square</a>
+                <a class="list-group-item left-navlink py-0" href="#MorphologyBased">Rectangle</a>
+                <a class="list-group-item left-navlink py-0" href="#MorphologyBased">Thread</a>
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link left-navlink-main disabled" href="#">Others</a>
+              <a class="nav-link left-navlink-main py-0" href="#OthersBased">Others</a>
+              <ul class="list-group left-subnav">
+                <a class="list-group-item left-navlink py-0 fluorescent-btn" href="#OthersBased">Fluorescent</a>
+                <a class="list-group-item left-navlink py-0 uv-btn" href="#OthersBased">UV</a>
+              </ul>
             </li>
         </div>
     <div class="container float-left" id="anna-content">
-        <div class="filler" id="ir-filler"></div>
     <div class="IRBased container" id="IRBased">
-                <h2 class="text-primary text-center">Infrared Color Mapping System
-                </h2>
+        <div class="filler" id="ir-filler"></div>
+          <h2 class="text-primary text-center">Infrared Color Mapping System
+          </h2>
           <form id="irform" action="/runbackend">
             <div class="irinput d-flex">
               <div class="input-group mb-3 pr-2">
@@ -154,35 +158,35 @@
         </div>
       </form>
       <div id="IR-Result">
-          <img class="ir-image" id="id-image" src="static/img/compare-850-950.png" hidden>
+          <img class="ir-image" id="ir-image" src="">
       </div>
     </div>
 
-    <div class="filler" id="color-filler"></div>
     <div class="ColorBased container" id="ColorBased">
-        <form class="d-inline" action='/runbackend'>
+        <div class="filler" id="color-filler"></div>
+        <div class="d-inline" action='/runbackend'>
             <div class="form-group text-primary">
                 <h2 class="text-center">Color Detection</h2>
             </div>
             <div class="colorinput d-flex">
             <div class="input-group">
-                <input type="submit" id="color-orange" name="color" value="orange" class="btn fixed-btn run-backend" style="color:white; background-color: orange">
+                <a id="color-orange" name="color" value="orange" class="btn fixed-btn run-backend color-based text-white" style="background-color: orange">orange</a>
             </div>
             <div class="input-group">
-                <input type="submit" id="color-green" name="color" value="green" class="btn fixed-btn btn-success run-backend">
+                <a id="color-green" name="color" value="green" class="btn fixed-btn btn-success run-backend color-based text-white">green</a>
             </div>
             <div class="input-group">
-                <input type="submit" id="color-blue" name="color" value="blue" class="btn fixed-btn btn-primary run-backend">
+                <a id="color-blue" name="color" value="blue" class="btn fixed-btn btn-primary run-backend color-based text-white">blue</a>
             </div>
             <div class="input-group">
-                <input type="submit" id="color-purple" name="color" value="purple" class="btn fixed-btn run-backend" style="color:white; background-color: purple">
+                <a id="color-purple" name="color" value="purple" class="btn fixed-btn run-backend color-based text-white" style="background-color: purple">purple</a>
             </div>
             </div>
-        </form>
+        </div>
     </div>
 
-    <div class="filler" id="morphology-filler"></div>
     <div class="Morphology container" id="MorphologyBased">
+        <div class="filler" id="morphology-filler"></div>
         <form  action='/runbackend'>
             <div class="form-group">
               <h2 class="text-primary text-center">Morphology Detection</h2>
@@ -204,36 +208,25 @@
         </form>
     </div>
 
-    <div class="filler" id="others-filler"></div>
-    <div class="form-group text-primary">
-        <h2 class="text-center">Other methods</h2>
-    </div>
     <div class="Fluorescent container" id="OthersBased">
-      <div class="d-flex">
-        <div class="input-group">
-          <h2 class="text-primary">Fluorescent</h2>
-        </div>
-        <div class="input-group">
-          <a href="load?imgfile=IMG_1768.jpg" class="btn fixed-btn btn-info fluorescent-btn">Load</a>
-        </div>
+        <div class="filler" id="others-filler"></div>
+        <h2 class="text-center text-primary">Other methods</h2>
+        <div class="d-flex">
         <div class="input-group">
         </div>
         <div class="input-group">
-        </div>
-      </div>
-      <div class="d-flex">
-        <div class="input-group">
-          <h2 class="text-primary">UV</h2>
+          <a href='#OthersBased' class="btn fixed-btn btn-info fluorescent-btn" id='fluorescent-btn'>Fluorescent</a>
         </div>
         <div class="input-group">
-          <a href="load?imgfile=UV20181006.png" class="btn fixed-btn btn-info uv-btn">Load</a>
-        </div>
-        <div class="input-group">
+          <a href='#OthersBased' class="btn fixed-btn btn-info uv-btn">UV</a>
         </div>
         <div class="input-group">
         </div>
       </div>
+      <div id="Others-Result">
+        <img class="others-image" id="others-image" src="">
     </div>
+  </div>
     </div>
 </div>
 
