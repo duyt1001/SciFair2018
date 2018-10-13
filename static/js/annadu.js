@@ -9,6 +9,11 @@ $(".topnavbar .nav-link").on("click", function(){
 //    $(this).addClass("active");
     switchActive($(this));
  });
+ // Left navbar links switch top navbar links active
+ $(".left-navlink-main").on("click", function() {
+    toActive = '#topnavbar' + this.id.substring(11);
+    switchActive($(toActive));
+ });
 $(function() {
     // color mapping code here is NOT used!
     $('.ircolormapping').click(function(){
@@ -55,14 +60,14 @@ $(function() {
     });
     // fluorescent button loads the only image file
     $('.fluorescent-btn').click(function(){
-        $('#others-image').attr('src', 'static/img/IMG_1768.jpg');
-        switchActive($('#topnavbar-others'));
-        location.href = '/#OthersBased';
+        $('#verification-image').attr('src', 'static/img/IMG_1768.jpg');
+        switchActive($('#topnavbar-verification'));
+        location.href = '/#VerificationBased';
     });
     // uv button loads the only image file
     $('.uv-btn').click(function(){
-        $('#others-image').attr('src', 'static/img/UV20181006.png');
-        switchActive($('#topnavbar-others'));
-        location.href = '/#OthersBased';
+        $('#verification-image').attr('src', 'static/img/UV20181006.png');
+        switchActive($('#topnavbar-verification'));
+        location.href = '/#VerificationBased';
     });
   });

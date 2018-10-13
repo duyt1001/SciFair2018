@@ -40,7 +40,7 @@
         div.IRBased, div.ColorBased, div.Morphology, div.Fluorescent {
             height: 100vh;
         }
-        img.ir-image, img.others-image {
+        img.ir-image, img.verification-image {
             height: 65vh;
         }
         #left-navbar {
@@ -77,7 +77,7 @@
                 <a class="nav-link topnavbar-link" id='topnavbar-morphology' href="#MorphologyBased">Morphology</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link topnavbar-link" id='topnavbar-others' href="#OthersBased">Others</a>
+                <a class="nav-link topnavbar-link" id='topnavbar-verification' href="#VerificationBased">Verification</a>
             </li>
         </div>
     </header>
@@ -86,7 +86,7 @@
     <div class="" style="overflow:hidden">
         <div class="container-fluit nav flex-column position-fixed float-left" id="left-navbar">
             <li class="nav-item">
-              <a class="nav-link active left-navlink-main py-0" href="#IRBased">Infrared</a>
+              <a class="nav-link active left-navlink-main py-0" id="leftnavlink-ir" href="#IRBased">Infrared</a>
               <div class="list-group left-subnav">
                 <label for='visible' class="list-group-item left-navlink py-0 ir-label">Visible</label>
                 <label for='850nm' class="list-group-item left-navlink py-0 ir-label">850nm</label>
@@ -95,7 +95,7 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link left-navlink-main py-0" href="#ColorBased">Color Detection</a>
+              <a class="nav-link left-navlink-main py-0" id="leftnavlink-color" href="#ColorBased">Color Detection</a>
               <ul class="list-group left-subnav">
                 <a class="list-group-item left-navlink py-0 color-based" href="#ColorBased">Orange</a>
                 <a class="list-group-item left-navlink py-0 color-based" href="#ColorBased">Green</a>
@@ -104,7 +104,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link left-navlink-main py-0" href="#MorphologyBased">Morphology</a>
+              <a class="nav-link left-navlink-main py-0" id="leftnavlink-morphology" href="#MorphologyBased">Morphology</a>
               <ul class="list-group left-subnav">
                 <a class="list-group-item left-navlink py-0 morphology-btn" href="#MorphologyBased">Circle</a>
                 <a class="list-group-item left-navlink py-0 morphology-btn" href="#MorphologyBased">Square</a>
@@ -112,10 +112,10 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link left-navlink-main py-0" href="#OthersBased">Others</a>
+              <a class="nav-link left-navlink-main py-0" id="leftnavlink-verification" href="#VerificationBased">Verification</a>
               <ul class="list-group left-subnav">
-                <a class="list-group-item left-navlink py-0 fluorescent-btn" href="#OthersBased">Fluorescent</a>
-                <a class="list-group-item left-navlink py-0 uv-btn" href="#OthersBased">UV</a>
+                <a class="list-group-item left-navlink py-0 fluorescent-btn" href="#VerificationBased">Fluorescent</a>
+                <a class="list-group-item left-navlink py-0 uv-btn" href="#VerificationBased">UV</a>
               </ul>
             </li>
         </div>
@@ -219,23 +219,23 @@
     </div>
 
     <!-- Fluorescent and UV -->
-    <div class="Fluorescent container" id="OthersBased">
-        <div class="filler" id="others-filler"></div>
-        <h2 class="text-center text-primary">Other methods</h2>
+    <div class="Fluorescent container" id="VerificationBased">
+        <div class="filler" id="verification-filler"></div>
+        <h2 class="text-center text-primary">Verification Methods</h2>
         <div class="d-flex">
         <div class="input-group">
         </div>
         <div class="input-group">
-          <a href='#OthersBased' class="btn fixed-btn btn-info fluorescent-btn" id='fluorescent-btn'>Fluorescent</a>
+          <a href='#VerificationBased' class="btn fixed-btn btn-info fluorescent-btn" id='fluorescent-btn'>Fluorescent</a>
         </div>
         <div class="input-group">
-          <a href='#OthersBased' class="btn fixed-btn btn-info uv-btn">UV</a>
+          <a href='#VerificationBased' class="btn fixed-btn btn-info uv-btn">UV</a>
         </div>
         <div class="input-group">
         </div>
       </div>
-      <div id="Others-Result">
-        <img class="others-image" id="others-image" src="">
+      <div id="verification-Result">
+        <img class="verification-image" id="verification-image" src="">
     </div>
   </div>
     </div>
